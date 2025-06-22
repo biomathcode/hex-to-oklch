@@ -1,0 +1,49 @@
+{
+  "name": "hex-to-oklch",
+  "displayName": "Hex to OKLCH Converter",
+  "description": "Convert hex color codes to OKLCH format",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Formatters"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "hex-to-oklch.convertHexToOklch",
+        "title": "Convert Hex to OKLCH"
+      },
+      {
+        "command": "hex-to-oklch.convertSelectedHexToOklch",
+        "title": "Convert Selected Hex to OKLCH"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "hex-to-oklch.convertSelectedHexToOklch",
+          "when": "editorHasSelection",
+          "group": "1_modification"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/culori": "^4.0.0",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.74.0",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "culori": "^3.3.0"
+  }
+}
