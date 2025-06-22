@@ -2,6 +2,12 @@
 
 A VS Code extension that converts hex color codes to OKLCH format.
 
+## Demo
+
+<video src="demo.mp4" width="100%" controls></video>
+
+_Watch how to convert hex colors to OKLCH format using both command palette method._
+
 ## Features
 
 - Convert hex color codes to OKLCH format
