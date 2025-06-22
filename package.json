@@ -2,11 +2,19 @@
   "name": "hex-to-oklch",
   "displayName": "Hex to OKLCH Converter",
   "description": "Convert hex color codes to OKLCH format",
+  "license": "MIT",
+  "version": "1.0.0",
+  "publisher": "edubasabe",
+  "icon": "src/assets/icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/edubasabe/hex-to-oklch"
   },
-  "version": "0.0.1",
+  "author": {
+    "name": "David Basabe",
+    "email": "edubasabe1@gmail.com",
+    "url": "https://github.com/edubasabe"
+  },
   "engines": {
     "vscode": "^1.74.0"
   },
