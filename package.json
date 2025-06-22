@@ -2,6 +2,10 @@
   "name": "hex-to-oklch",
   "displayName": "Hex to OKLCH Converter",
   "description": "Convert hex color codes to OKLCH format",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edubasabe/hex-to-oklch"
+  },
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.74.0"
