@@ -4,22 +4,40 @@ import { converter } from 'culori';
 const toOklch = converter('oklch');
 
 export function activate(context: vscode.ExtensionContext) {
-  let convertHexToOklch = vscode.commands.registerCommand('hex-to-oklch.convertHexToOklch', async () => {
-    const input = await vscode.window.showInputBox({
-      prompt: 'Enter hex color code (e.g., #ff0000 or ff0000)',
-      placeHolder: '#ff0000'
-    });
-    
-    if (input) {
-      const oklchColor = convertHexToOklchString(input);
-      if (oklchColor) {
+ let convertHexToOklch = vscode.commands.registerCommand('hex-to-oklch.convertHexToOklch', async () => {
+  const editor = vscode.window.activeTextEditor;
+  let selectedText = '';
+  let selection: vscode.Selection | null = null;
+
+  if (editor) {
+    selection = editor.selection;
+    selectedText = editor.document.getText(selection).trim();
+  }
+
+  const input = await vscode.window.showInputBox({
+    prompt: 'Enter hex color code (e.g., #ff0000 or ff0000)',
+    placeHolder: '#ff0000',
+    value: selectedText || ''
+  });
+
+  if (input) {
+    const oklchColor = convertHexToOklchString(input);
+    if (oklchColor) {
+      if (editor && selection && !selection.isEmpty) {
+        editor.edit(editBuilder => {
+          editBuilder.replace(selection!, oklchColor);
+        });
+        vscode.window.showInformationMessage(`Replaced with OKLCH: ${oklchColor}`);
+      } else {
         vscode.env.clipboard.writeText(oklchColor);
         vscode.window.showInformationMessage(`OKLCH: ${oklchColor} (copied to clipboard)`);
-      } else {
-        vscode.window.showErrorMessage('Invalid hex color code');
       }
+    } else {
+      vscode.window.showErrorMessage('Invalid hex color code');
     }
-  });
+  }
+});
+
   
   let convertSelectedHexToOklch = vscode.commands.registerCommand('hex-to-oklch.convertSelectedHexToOklch', () => {
     const editor = vscode.window.activeTextEditor;
